@@ -1,0 +1,39 @@
+import subprocess
+import time
+
+# Caminho para o executável adb
+adb_path = "C:\\Users\\cleiton\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe"
+
+# Comando para ligar a tela
+wake_up_command = f"{adb_path} shell input keyevent 224"
+subprocess.run(wake_up_command, shell=True)
+time.sleep(1)
+
+# Comando para deslizar para cima (simula o gesto de desbloqueio)
+swipe_up_command = f"{adb_path} shell input swipe 500 1000 500 500"
+subprocess.run(swipe_up_command, shell=True)
+time.sleep(1)
+
+# Comando para inserir a senha (substitua '0009' pela sua senha)
+password_command = f"{adb_path} shell input text ####"
+subprocess.run(password_command, shell=True)
+time.sleep(1)
+
+# Comando para pressionar a tecla Enter (simula a confirmação da senha)
+enter_command = f"{adb_path} shell input keyevent 66"
+subprocess.run(enter_command, shell=True)
+time.sleep(1)
+
+# Comando para abrir o Google Chrome
+open_chrome_command = f"{adb_path} shell am start -n com.android.chrome/com.google.android.apps.chrome.Main"
+subprocess.run(open_chrome_command, shell=True)
+time.sleep(2)  # Aguarda 2 segundos para garantir que o Chrome tenha sido aberto
+
+# Comando para digitar "Eu sou o melhor" na barra de endereços do Chrome
+type_text_command = f'{adb_path} shell input text "Eu sou o melhor"'
+subprocess.run(type_text_command, shell=True)
+time.sleep(1)
+
+# Comando para pressionar a tecla Enter (simula a confirmação da pesquisa)
+press_enter_command = f"{adb_path} shell input keyevent 66"
+subprocess.run(press_enter_command, shell=True)
